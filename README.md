@@ -30,10 +30,10 @@ https://amazon-scraper.tprojects.workers.dev/search/laptop
   "fetch_from": "https://www.amazon.in/s?k=laptop",
   "result": [
     {
-      "name": "Microsoft Surface GO 2 STQ-00013 10.1-inch Laptop (Gold Processor 4425Y/8GB/128GB SSD/Windows 10 Home in S Mode/Intel UHD 615 Graphics), Platinum",
+      "name": "Lenovo IdeaPad Slim 3 Intel Celeron N4020 15.6-inch HD Thin and Light Laptop (4GB/256GB SSD/Windows 10/Platinum Grey/1.7Kg), 81WQ003LIN",
       "image": "https://m.media-amazon.com/images/I/61Dw5Z8LzJL._AC_UY218_.jpg",
-      "price": "₹55,990",
-      "original_price": "₹57,999",
+      "price": "₹23,990",
+      "original_price": "₹30,690",
       "product_link": "https://www.amazon.in/Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM/ref=sr_1_3",
       "query_url": "https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM/ref=sr_1_3"
     },
