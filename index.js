@@ -18,16 +18,10 @@ async function handleRequest(request) { /* Handle the incoming request */
                 headers
             })
         } else {
-            return new Response('Coming soon', {
-                status: 200,
-                headers
-            })
+            return Response.redirect("https://github.com/cachecleanerjeet/amazon-scraper", 301)
         }
     } else { /* Respond for other request methods */
-        return new Response(null, {
-            status: 200,
-            headers
-        })
+        return Response.redirect("https://github.com/cachecleanerjeet/amazon-scraper", 301)
     }
 }
 
