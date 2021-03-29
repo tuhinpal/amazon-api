@@ -4,9 +4,10 @@
     "version": "1.0.0",
     "description": "Serverless amazon india scraper",
     "main": "index.js",
+    "keywords": ["amazon", "scraper", "google", "amazon-scraper", "india", "server", "javascript"],
     "scripts": {
-        "dev": "wrangler dev",
-        "deploy": "wrangler publish"
+        "dev": "Wrangler Developer",
+        "deploy": "Wrangler Publish"
     },
     "author": "Tuhin Kanti Pal <me@thetuhin.com>",
     "license": "Apache-2.0"
