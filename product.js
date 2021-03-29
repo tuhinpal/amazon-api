@@ -12,7 +12,8 @@ const product = async(query) => {
             } catch (err) {}
         }
 
-    } catch (err) {
+    } 
+    catch (err) {
         var features = [null]
     }
 
@@ -20,7 +21,9 @@ const product = async(query) => {
         var price = product_page.split('<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">')[1].split('</span>')[0]
         var original_price = product_page.split('<span class="priceBlockStrikePriceString a-text-strike">')[1].split('</span>')[0]
         if (!original_price) { var original_price = price }
-    } catch (err) {
+    } 
+
+    catch (err) {
         var price = (product_page.split('<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">')[1].split('</span>')[0]).split(' - ')[0]
         var original_price = (product_page.split('<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">')[1].split('</span>')[0]).split(' - ')[1]
         if (!original_price) { var original_price = price }
@@ -35,7 +38,9 @@ const product = async(query) => {
             features,
             product_link: `https://www.amazon.in/${query}`
         }
-    } catch (err) {
+    } 
+
+    catch (err) {
         var product_detail = null
     }
 
