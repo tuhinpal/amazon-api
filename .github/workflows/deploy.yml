@@ -1,4 +1,4 @@
-name: Publish to Cloudflare Workers
+name: Publish to Cloudflare Workers 
 
 on:
   push:
