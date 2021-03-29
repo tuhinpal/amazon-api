@@ -1,0 +1,13 @@
+{
+    "private": true,
+    "name": "amazon-scraper",
+    "version": "1.0.0",
+    "description": "Serverless amazon india scraper",
+    "main": "index.js",
+    "scripts": {
+        "dev": "wrangler dev",
+        "deploy": "wrangler publish"
+    },
+    "author": "Tuhin Kanti Pal <me@thetuhin.com>",
+    "license": "Apache-2.0"
+}
