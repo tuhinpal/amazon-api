@@ -1,14 +1,18 @@
-# amazon-scraper
+# Amazon Scraper
 ## Serverless Amazon India Scraper made with Cloudflare worker
+
+##
 
 ### Features
 
-- Product Page
-- Search Page
-- No Limitation
-- Unlimited Requests
+- __Product Page__
+- __Search Page__
+- __No Limitation__
+- __Unlimited Requests__
 
-### Api Endpoint
+##
+
+### Api Endpoint 💻
 
 #### 🗺 **Search (GET)**
 
@@ -22,7 +26,7 @@ https://amazon-scraper.tprojects.workers.dev/search/laptop
 ```
 *$ Response*
 
-```
+```json
 {
   "status": true,
   "total_result": 16,
@@ -55,7 +59,7 @@ https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Pl
 
 *$ Response*
 
-```
+```json
 {
   "status": true,
   "query": "Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM/ref=sr_1_3",
@@ -79,9 +83,13 @@ https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Pl
 }
 ```
 
+##
+
 ### Deploy
 
 [![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cachecleanerjeet/amazon-scraper)
+
+##
 
 ### Development
 
@@ -92,13 +100,17 @@ https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Pl
 - Run This command 
 
     ```
-    wrangler dev
+    Wrangler Developer
     ```
 
-### License & Copyright :
-- This Project is [Apache-2.0](https://github.com/cachecleanerjeet/amazon-scraper/blob/main/LICENSE) Licensed
-- Copyright 2021 by [Tuhin Kanti Pal](https://github.com/cachecleanerjeet)
+##
 
-### Connect :
+### License & Copyright 💾
+- **This Project is** [Apache-2.0](https://github.com/cachecleanerjeet/amazon-scraper/blob/main/LICENSE) Licensed
+- **Copyright 2021 by** [Tuhin Kanti Pal](https://github.com/cachecleanerjeet)
+
+##
+
+### Connect 📠
 - [Channel](https://telegram.dog/tprojects)
 - [Support Group](https://telegram.dog/t_projects)
