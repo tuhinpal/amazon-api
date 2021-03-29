@@ -8,7 +8,7 @@ const product = async(query) => {
         var feat = feat.split('<span class="a-list-item">')
         for (var i = 1; i < feat.length; i++) {
             try {
-                features.push(feat[i].split('</span>')[0].replaceAll('\n', ''))
+                features.push((feat[i].split('</span>')[0].replaceAll('\n', '')).replaceAll('"', "'"))
             } catch (err) {}
         }
 
