@@ -3,7 +3,7 @@ const search = async(query, host) => {
     const SearchQuery = query.replace(/%20/gi, '+')
     const searchRes = await (await fetch(`https://www.amazon.in/s?k=${SearchQuery}`)).text()
 
-    var all_product = searchRes.split('<span class="a-size-medium a-color-base a-text-normal" dir="auto">')
+    var all_product = searchRes.split('<div class="a-section aok-relative s-image-fixed-height">')
 
     var i, result = [];
     for (i = 1; i < all_product.length; i++) { /* (type 1) */
@@ -12,8 +12,8 @@ const search = async(query, host) => {
 
             if (!product_link.includes('/gp/slredirect/')) { /* Not including sponsered products */
                 result.push({
-                    name: (all_product[i].split('</span>')[0]).replace(/&#39;/gi, "'").replace(/&amp;/gi, "&").replace(/&quot;/gi),
-                    image: all_product[i].split('<div class="a-section aok-relative s-image-fixed-height">')[1].split('<img src="')[1].split('"')[0],
+                    name: (all_product[i].split('dir="auto">')[1].split('</span>')[0]).replace(/&#39;/gi, "'").replace(/&amp;/gi, "&").replace(/&quot;/gi),
+                    image: all_product[i].split('<img src="')[1].split('"')[0],
                     price: all_product[i].split('<span class="a-price" data-a-size="l" data-a-color="price"><span class="a-offscreen">')[1].split('</span>')[0],
                     original_price: all_product[i].split('<span class="a-price a-text-price" data-a-size="b" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">')[1].split('</span>')[0],
                     product_link,
