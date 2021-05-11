@@ -1,4 +1,4 @@
-const product = async(query) => {
+const product = async (query) => {
 
     const product_page = await (await fetch(`https://www.amazon.in/${query}`)).text()
 
@@ -9,7 +9,7 @@ const product = async(query) => {
         for (var i = 1; i < feat.length; i++) {
             try {
                 features.push((feat[i].split('</span>')[0].replaceAll('\n', '')).replaceAll('"', "'"))
-            } catch (err) {}
+            } catch (err) { }
         }
 
     } catch (err) {
@@ -21,19 +21,25 @@ const product = async(query) => {
         var price = product_page.split('<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">')[1].split('</span>')[0]
         var original_price = product_page.split('<span class="priceBlockStrikePriceString a-text-strike">')[1].split('</span>')[0]
         if (!original_price) { var original_price = price }
-    } catch (err) {
+    } catch (error) {
         try {
             var price = (product_page.split('<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">')[1].split('</span>')[0]).split(' - ')[0]
             var original_price = (product_page.split('<span id="priceblock_ourprice" class="a-size-medium a-color-price priceBlockBuyingPriceString">')[1].split('</span>')[0]).split(' - ')[1]
             if (!original_price) { var original_price = price }
-        } catch (er) {
+        } catch (erro) {
             try {
                 var price = product_page.split('<span id="priceblock_dealprice" class="a-size-medium a-color-price priceBlockDealPriceString">')[1].split('</span>')[0]
                 var original_price = product_page.split('<span class="priceBlockStrikePriceString a-text-strike">')[1].split('</span>')[0]
                 if (!original_price) { var original_price = price }
-            } catch (e) {
-                var price = null
-                var original_price = null
+            } catch (err) {
+                try {
+                    var price = product_page.split('<span id="priceblock_saleprice" class="a-size-medium a-color-price priceBlockSalePriceString">')[1].split('</span>')[0]
+                    var original_price = product_page.split('<td class="a-span12 a-color-price a-size-base priceBlockSavingsString">')[1].split('</td')[0].replace(/\n/gi, '')
+                    if (!original_price) { var original_price = price }
+                } catch (er) {
+                    var price = null
+                    var original_price = null
+                }
             }
         }
     }
