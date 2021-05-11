@@ -44,10 +44,15 @@ const product = async (query) => {
         }
     }
 
+    var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
+    if (image === '') {
+        var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('src="')[1].split('"')[0].replaceAll('\n', '')
+    }
+
     try {
         var product_detail = {
             name: (product_page.split('<span id="productTitle" class="a-size-large product-title-word-break">')[1].split('</span>')[0]).replaceAll('\n', ''),
-            image: product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0],
+            image,
             price,
             original_price,
             features,
