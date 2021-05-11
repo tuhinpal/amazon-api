@@ -46,7 +46,7 @@ const product = async (query) => {
 
     var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
     if (image === '') {
-        var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('src="')[1].split('"')[0].replaceAll('\n', '')
+        var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-a-dynamic-image="{&quot;')[1].split('&quot;')[0].replaceAll('\n', '')
     }
 
     try {
