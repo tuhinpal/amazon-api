@@ -1,4 +1,4 @@
-const search = async(query, host) => {
+const search = async (query, host) => {
 
     const SearchQuery = query.replace(/%20/gi, '+')
     const searchRes = await (await fetch(`https://www.amazon.in/s?k=${SearchQuery}`)).text()
@@ -12,15 +12,15 @@ const search = async(query, host) => {
 
             if (!product_link.includes('/gp/slredirect/')) { /* Not including sponsered products */
                 result.push({
-                    name: (all_product[i].split('dir="auto">')[1].split('</span>')[0]).replace(/&#39;/gi, "'").replace(/&amp;/gi, "&").replace(/&quot;/gi),
-                    image: (all_product[i].split('<img src="')[1].split('"')[0]).replace('_AC_UY218_.jpg', '_SL1000_.jpg'),
+                    name: (all_product[i].split('<span class="a-size-medium a-color-base a-text-normal">')[1].split('</span>')[0]).replace(/&#39;/gi, "'").replace(/&amp;/gi, "&").replace(/&quot;/gi, "'").replace(/&#x27;/gi, "'"),
+                    image: (all_product[i].split('src="')[1].split('"')[0]).replace('_AC_UY218_.jpg', '_SL1000_.jpg'),
                     price: all_product[i].split('<span class="a-price" data-a-size="l" data-a-color="price"><span class="a-offscreen">')[1].split('</span>')[0],
                     original_price: all_product[i].split('<span class="a-price a-text-price" data-a-size="b" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">')[1].split('</span>')[0],
                     product_link,
                     query_url: product_link.replace('www.amazon.in', host + '/product')
                 })
             }
-        } catch (err) {}
+        } catch (err) { }
     }
 
     if (result.length === 0) { /* (type 2) */
@@ -31,15 +31,15 @@ const search = async(query, host) => {
                 var product_link = 'https://www.amazon.in' + all_product_container[i].split('<a class="a-link-normal s-no-outline" target="_blank" href="')[1].split('"')[0].split('?')[0]
                 if (!product_link.includes('/gp/slredirect/')) {
                     result.push({
-                        name: (all_product_container[i].split('<span class="a-size-base-plus a-color-base a-text-normal" dir="auto">')[1].split('</span>')[0]).replace(/&#39;/gi, "'").replace(/&amp;/gi, "&").replace(/&quot;/gi),
-                        image: (all_product_container[i].split('<div class="a-section aok-relative s-image-tall-aspect">')[1].split('<img src="')[1].split('"')[0]).replace('_AC_UL320_.jpg', '_SL1000_.jpg'),
+                        name: (all_product_container[i].split('<span class="a-size-base-plus a-color-base a-text-normal">')[1].split('</span>')[0]).replace(/&#39;/gi, "'").replace(/&amp;/gi, "&").replace(/&quot;/gi, "'").replace(/&#x27;/gi, "'"),
+                        image: (all_product_container[i].split('src="')[1].split('"')[0]).replace('_AC_UL320_.jpg', '_SL1000_.jpg'),
                         price: all_product_container[i].split('<span class="a-price" data-a-size="l" data-a-color="price"><span class="a-offscreen">')[1].split('</span>')[0],
                         original_price: all_product_container[i].split('<span class="a-price a-text-price" data-a-size="b" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">')[1].split('</span>')[0],
                         product_link,
                         query_url: product_link.replace('www.amazon.in', host + '/product')
                     })
                 }
-            } catch (err) {}
+            } catch (err) { }
         }
     }
 
