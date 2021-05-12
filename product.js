@@ -34,7 +34,7 @@ const product = async (query) => {
             } catch (err) {
                 try {
                     var price = product_page.split('<span id="priceblock_saleprice" class="a-size-medium a-color-price priceBlockSalePriceString">')[1].split('</span>')[0]
-                    var original_price = product_page.split('<td class="a-span12 a-color-price a-size-base priceBlockSavingsString">')[1].split('</td')[0].replace(/\n/gi, '')
+                    var original_price = product_page.split('<span class="priceBlockStrikePriceString a-text-strike">')[1].split('</span>')[0].replace(/\n/gi, '')
                     if (!original_price) { var original_price = price }
                 } catch (er) {
                     var price = null
@@ -42,6 +42,14 @@ const product = async (query) => {
                 }
             }
         }
+    }
+
+    if (original_price !== null && original_price.startsWith(' ')) { /* Fixing the original_price if it starts with space  */
+        var original_price = original_price.replace(' ', '')
+    }
+
+    if (price !== null && price.startsWith(' ')) { /* Fixing the price if it starts with space  */
+        var price = price.replace(' ', '')
     }
 
     var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
