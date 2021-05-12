@@ -18,8 +18,23 @@ async function handleRequest(request) { /* Handle the incoming request */
                 headers
             })
         } else {
-            return Response.redirect("https://github.com/cachecleanerjeet/amazon-scraper", 301)
+            return new Response(JSON.stringify({ /* Extra curricular activities */
+                alive: true,
+                repository_name: 'amazon-scraper',
+                repository_description: 'Serverless Amazon India Scraper with search and product API, made with Cloudflare worker',
+                repository_url: 'https://github.com/cachecleanerjeet/amazon-scraper',
+                made_by: 'https://github.com/cachecleanerjeet',
+                api_endpoints: 'https://github.com/cachecleanerjeet/amazon-scraper#api-endpoint'
+            }, null, 2), {
+                status: 200,
+                headers
+            })
         }
+    } else if (request.method === 'OPTIONS') { /* Respond for OPTIONS request method */
+        return new Response("🤝", {
+            status: 200,
+            headers
+        })
     } else { /* Respond for other request methods */
         return Response.redirect("https://github.com/cachecleanerjeet/amazon-scraper", 301)
     }
