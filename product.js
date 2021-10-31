@@ -49,6 +49,7 @@ const product = async (query) => {
     if (price !== null) {
         price = parseFloat(price.replace('₹', '').replace(/,/g, '').trim())
     }
+
     try {
         var in_stock = product_page.split('id="availability"')[1].split('</div>')[0].toLowerCase().lastIndexOf('in stock') !== -1
     } catch (e) { var in_stock = null }
@@ -60,12 +61,23 @@ const product = async (query) => {
     } catch (e) { var image = null }
 
     try {
+        var review_section = product_page.split('ratings</span>')[0]
+        var ratings_count = parseInt(lastEntry(review_section.split('>')).replace(/,/g, '').trim())
+        var rating = parseFloat(lastEntry(lastEntry(review_section.split('a-icon-star')).split('</span>')[0].split('out of')[0].split('>')).trim())
+        var rating_details = { ratings_count, rating }
+    } catch (er) {
+        console.log(er.message)
+        var rating_details = null
+    }
+
+    try {
         var product_detail = {
             name: (product_page.split('<span id="productTitle" class="a-size-large product-title-word-break">')[1].split('</span>')[0]).replaceAll('\n', ''),
             image,
             price,
             original_price,
             in_stock,
+            rating_details,
             features,
             product_link: `https://www.amazon.in/${query}`
         }
@@ -82,5 +94,6 @@ const product = async (query) => {
     }, null, 2)
 }
 
+const lastEntry = (array) => array[array.length - 1]
 
 export default product
