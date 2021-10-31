@@ -43,15 +43,13 @@ const product = async (query) => {
             }
         }
     }
-
-    if (original_price !== null && original_price.startsWith(' ')) { /* Fixing the original_price if it starts with space  */
-        var original_price = original_price.replace(' ', '')
+    if (original_price !== null) {
+        original_price = parseFloat(original_price.replace('₹', '').replace(/,/g, '').trim())
     }
-
-    if (price !== null && price.startsWith(' ')) { /* Fixing the price if it starts with space  */
-        var price = price.replace(' ', '')
+    if (price !== null) {
+        price = parseFloat(price.replace('₹', '').replace(/,/g, '').trim())
     }
-
+    
     var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
     if (image === '') {
         var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-a-dynamic-image="{&quot;')[1].split('&quot;')[0].replaceAll('\n', '')
