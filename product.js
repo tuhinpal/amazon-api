@@ -51,8 +51,9 @@ const product = async (query) => {
     }
 
     try {
-        var in_stock = product_page.split('id="availability"')[1].split('</div>')[0].toLowerCase().lastIndexOf('in stock') !== -1
-    } catch (e) { var in_stock = null }
+        var in_stock = product_page.split('id="availability"')[1].split('</div>')[0].toLowerCase().lastIndexOf('in stock.') !== -1
+    } catch (e) { var in_stock = (product_page.split('In stock.').length > 1) }
+
     try {
         var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
         if (image === '') {
