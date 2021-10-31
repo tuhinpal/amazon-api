@@ -49,11 +49,15 @@ const product = async (query) => {
     if (price !== null) {
         price = parseFloat(price.replace('₹', '').replace(/,/g, '').trim())
     }
-    
-    var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
-    if (image === '') {
-        var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-a-dynamic-image="{&quot;')[1].split('&quot;')[0].replaceAll('\n', '')
-    }
+    try {
+        var in_stock = product_page.split('id="availability"')[1].split('</div>')[0].toLowerCase().lastIndexOf('in stock') !== -1
+    } catch (e) { var in_stock = null }
+    try {
+        var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
+        if (image === '') {
+            var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-a-dynamic-image="{&quot;')[1].split('&quot;')[0].replaceAll('\n', '')
+        }
+    } catch (e) { var image = null }
 
     try {
         var product_detail = {
@@ -61,6 +65,7 @@ const product = async (query) => {
             image,
             price,
             original_price,
+            in_stock,
             features,
             product_link: `https://www.amazon.in/${query}`
         }
