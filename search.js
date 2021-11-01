@@ -14,8 +14,8 @@ const search = async (query, host) => {
                 result.push({
                     name: (all_product[i].split('<span class="a-size-medium a-color-base a-text-normal">')[1].split('</span>')[0]).replace(/&#39;/gi, "'").replace(/&amp;/gi, "&").replace(/&quot;/gi, "'").replace(/&#x27;/gi, "'"),
                     image: (all_product[i].split('src="')[1].split('"')[0]).replace('_AC_UY218_.jpg', '_SL1000_.jpg'),
-                    price: all_product[i].split('<span class="a-price" data-a-size="l" data-a-color="price"><span class="a-offscreen">')[1].split('</span>')[0],
-                    original_price: all_product[i].split('<span class="a-price a-text-price" data-a-size="b" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">')[1].split('</span>')[0],
+                    price: parseFloat(all_product[i].split('<span class="a-price" data-a-size="l" data-a-color="price"><span class="a-offscreen">')[1].split('</span>')[0].replace(/,/g, '').replace('₹', '').trim()),
+                    original_price: parseFloat(all_product[i].split('<span class="a-price a-text-price" data-a-size="b" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">')[1].split('</span>')[0].replace(/,/g, '').replace('₹', '').trim()),
                     product_link,
                     query_url: product_link.replace('www.amazon.in', host + '/product')
                 })
@@ -33,8 +33,8 @@ const search = async (query, host) => {
                     result.push({
                         name: (all_product_container[i].split('<span class="a-size-base-plus a-color-base a-text-normal">')[1].split('</span>')[0]).replace(/&#39;/gi, "'").replace(/&amp;/gi, "&").replace(/&quot;/gi, "'").replace(/&#x27;/gi, "'"),
                         image: (all_product_container[i].split('src="')[1].split('"')[0]).replace('_AC_UL320_.jpg', '_SL1000_.jpg'),
-                        price: all_product_container[i].split('<span class="a-price" data-a-size="l" data-a-color="price"><span class="a-offscreen">')[1].split('</span>')[0],
-                        original_price: all_product_container[i].split('<span class="a-price a-text-price" data-a-size="b" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">')[1].split('</span>')[0],
+                        price: parseFloat(all_product_container[i].split('<span class="a-price" data-a-size="l" data-a-color="price"><span class="a-offscreen">')[1].split('</span>')[0].replace(/,/g, '').replace('₹', '').trim()),
+                        original_price: parseFloat(all_product_container[i].split('<span class="a-price a-text-price" data-a-size="b" data-a-strike="true" data-a-color="secondary"><span class="a-offscreen">')[1].split('</span>')[0].replace(/,/g, '').replace('₹', '').trim()),
                         product_link,
                         query_url: product_link.replace('www.amazon.in', host + '/product')
                     })
