@@ -43,18 +43,32 @@ const product = async (query) => {
             }
         }
     }
-
-    if (original_price !== null && original_price.startsWith(' ')) { /* Fixing the original_price if it starts with space  */
-        var original_price = original_price.replace(' ', '')
+    if (original_price !== null) {
+        original_price = parseFloat(original_price.replace('₹', '').replace(/,/g, '').trim())
+    }
+    if (price !== null) {
+        price = parseFloat(price.replace('₹', '').replace(/,/g, '').trim())
     }
 
-    if (price !== null && price.startsWith(' ')) { /* Fixing the price if it starts with space  */
-        var price = price.replace(' ', '')
-    }
+    try {
+        var in_stock = product_page.split('id="availability"')[1].split('</div>')[0].toLowerCase().lastIndexOf('in stock.') !== -1
+    } catch (e) { var in_stock = (product_page.split('In stock.').length > 1) }
 
-    var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
-    if (image === '') {
-        var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-a-dynamic-image="{&quot;')[1].split('&quot;')[0].replaceAll('\n', '')
+    try {
+        var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-old-hires="')[1].split('"')[0].replaceAll('\n', '')
+        if (image === '') {
+            var image = product_page.split('<div id="imgTagWrapperId" class="imgTagWrapper">')[1].split('data-a-dynamic-image="{&quot;')[1].split('&quot;')[0].replaceAll('\n', '')
+        }
+    } catch (e) { var image = null }
+
+    try {
+        var review_section = product_page.split('ratings</span>')[0]
+        var ratings_count = parseInt(lastEntry(review_section.split('>')).replace(/,/g, '').trim())
+        var rating = parseFloat(lastEntry(lastEntry(review_section.split('a-icon-star')).split('</span>')[0].split('out of')[0].split('>')).trim())
+        var rating_details = { ratings_count, rating }
+    } catch (er) {
+        console.log(er.message)
+        var rating_details = null
     }
 
     try {
@@ -63,6 +77,8 @@ const product = async (query) => {
             image,
             price,
             original_price,
+            in_stock,
+            rating_details,
             features,
             product_link: `https://www.amazon.in/${query}`
         }
@@ -79,5 +95,6 @@ const product = async (query) => {
     }, null, 2)
 }
 
+const lastEntry = (array) => array[array.length - 1]
 
 export default product

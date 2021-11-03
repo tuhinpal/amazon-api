@@ -30,17 +30,19 @@ https://amazon-scraper.tprojects.workers.dev/search/laptop
   "fetch_from": "https://www.amazon.in/s?k=laptop",
   "result": [
     {
-      "name": "Lenovo IdeaPad Slim 3 Intel Celeron N4020 15.6-inch HD Thin and Light Laptop (4GB/256GB SSD/Windows 10/Platinum Grey/1.7Kg), 81WQ003LIN",
-      "image": "https://m.media-amazon.com/images/I/61Dw5Z8LzJL._AC_UY218_.jpg",
-      "price": "₹23,990",
-      "original_price": "₹30,690",
-      "product_link": "https://www.amazon.in/Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM/ref=sr_1_3",
-      "query_url": "https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM/ref=sr_1_3"
+      "name": "ASUS VivoBook 15 (2020), 39.6 cm HD, Dual Core Intel Celeron N4020, Thin and Light Laptop (4GB RAM/256GB SSD/Integrated Graphics/Windows 10 Home/Transparent Silver/1.8 Kg), X515MA-BR002T",
+      "image": "https://m.media-amazon.com/images/I/71S8U9VzLTL._SL1000_.jpg",
+      "price": 24990,
+      "original_price": 30990,
+      "product_link": "https://www.amazon.in/ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3",
+      "query_url": "https://amazon-scraper.dvishal485.workers.dev/product/ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3"
     },
     ... more ...
   ]
 }
 ```
+
+*Note : All currencies are in INR (₹)*
 
 #### 🗺 **Product (GET)**
 
@@ -58,26 +60,33 @@ https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Pl
 ```
 {
   "status": true,
-  "query": "Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM/ref=sr_1_3",
-  "fetch_from": "https://www.amazon.in/Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM/ref=sr_1_3",
+  "query": "ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3",
+  "fetch_from": "https://www.amazon.in/ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3",
   "product_detail": {
-    "name": "Lenovo IdeaPad Slim 3 Intel Celeron N4020 15.6-inch HD Thin and Light Laptop (4GB/256GB SSD/Windows 10/Platinum Grey/1.7Kg), 81WQ003LIN",
-    "image": "https://images-na.ssl-images-amazon.com/images/I/61Dw5Z8LzJL._SL1000_.jpg",
-    "price": "₹ 23,990.00",
-    "original_price": " ₹ 30,690.00",
+    "name": "ASUS VivoBook 15 (2020), 39.6 cm HD, Dual Core Intel Celeron N4020, Thin and Light Laptop (4GB RAM/256GB SSD/Integrated Graphics/Windows 10 Home/Transparent Silver/1.8 Kg), X515MA-BR002T",
+    "image": "https://m.media-amazon.com/images/I/71S8U9VzLTL._SL1500_.jpg",
+    "price": 24990,
+    "original_price": 30990,
+    "in_stock": false,
+    "rating_details": {
+      "ratings_count": 648,
+      "rating": 4.1
+    },
     "features": [
-      "Processor: Intel Celeron N4020 | Speed: 1.1 GHz (Base) - 2.8 GHz (Max) | 2 Cores | 4MB Cache",
-      "OS: Pre-Loaded Windows 10 Home with Lifetime Validity",
-      "Memory and Storage: 4GB RAM DDR4 | 256 GB SSD",
-      "Display: 15.6\" HD (1366x768) | Brightness: 220 nits | Anti-Glare",
-      "Design: 1.99 cm Thin and 1.7 kg Light | 2-Sided Narrow Bezel",
-      "Battery Life: 5 Hours | 35Wh Battery",
-      "Camera (Built in): HD 720p Camera with Privacy Shutter | Integrated Dual Array Microphone"
+      "Free upgrade to Windows 11 when available. Disclaimer-Upgrade rollout plan is being finalized and is scheduled to begin late in 2021 and continue into 2022. Specific timing will vary by device",
+      "Processor: Intel Celeron N4020 Processor, 1.1 GHz Base Speed, Up to 2.8 GHz Max Boost Turbo Speed , 2 cores, 2 Threads, 4MB Cache",
+      "Memory & Storage: 4GB SO-DIMM DDR4 2400MHz RAM, Upgradeable up to 8GB using 1x SO-DIMM Slot with | Storage: 256GB M.2 NVMe PCIe SSD",
+      "Graphics: Integrated Intel HD Graphics",
+      "Display: 15.6-inch (39.62 cms), LED-Backlit LCD, FHD (1920 x 1080) 16:9, 220nits, NanoEdge bezel, Anti-Glare Plane with 45% NTSC, 82% Screen-To-Body Ratio",
+      "Operating System: Pre-loaded Windows 10 Home with lifetime validity",
+      "Design & battery: Up to 19.9mm Thin | NanoEdge Bezels | Thin and Light Laptop | Laptop weight: 1.8 kg | 37WHrs, 2-cell Li-ion battery | Up to 6 hours battery life ;Note: Battery life depends on conditions of usage"
     ],
-    "product_link": "https://www.amazon.in/Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM/ref=sr_1_3"
+    "product_link": "https://www.amazon.in/ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3"
   }
 }
 ```
+
+*Note : All currencies are in INR (₹)*
 
 ### Deploy
 
