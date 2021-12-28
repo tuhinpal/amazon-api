@@ -138,7 +138,6 @@ export default async function searchProducts(query, host) {
       query: searchQuery,
       fetch_from: `https://www.amazon.in/s?k=${searchQuery}`,
       result,
-      length: all_product.length,
     },
     null,
     2
