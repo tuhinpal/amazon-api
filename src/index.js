@@ -1,6 +1,6 @@
-import search from "./src/search";
-import header from "./src/header";
-import product from "./src/product";
+import search from "./search";
+import header from "./header";
+import product from "./product";
 
 async function handleRequest(request) {
   /* Handle the incoming request */
@@ -32,11 +32,10 @@ async function handleRequest(request) {
             repository_name: "amazon-scraper",
             repository_description:
               "Serverless Amazon India Scraper with search and product API, made with Cloudflare worker",
-            repository_url:
-              "https://github.com/cachecleanerjeet/amazon-scraper",
-            made_by: "https://github.com/cachecleanerjeet",
+            repository_url: "https://github.com/tuhinpal/amazon-scraper",
+            made_by: "https://github.com/tuhinpal",
             api_endpoints:
-              "https://github.com/cachecleanerjeet/amazon-scraper#api-endpoint",
+              "https://github.com/tuhinpal/amazon-scraper#api-endpoint",
           },
           null,
           2
@@ -55,10 +54,7 @@ async function handleRequest(request) {
     });
   } else {
     /* Respond for other request methods */
-    return Response.redirect(
-      "https://github.com/cachecleanerjeet/amazon-scraper",
-      301
-    );
+    return Response.redirect("https://github.com/tuhinpal/amazon-scraper", 301);
   }
 }
 

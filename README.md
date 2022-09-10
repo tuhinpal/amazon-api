@@ -1,4 +1,5 @@
 # amazon-scraper
+
 ## Serverless Amazon India Scraper made with Cloudflare worker
 
 ### Features
@@ -12,7 +13,7 @@
 
 #### 🗺 **Search (GET)**
 
-*$ Request*
+_$ Request_
 
 ```
 https://{yourapp}.workers.dev/search/{query}
@@ -20,7 +21,8 @@ https://{yourapp}.workers.dev/search/{query}
 ## Ex.
 https://amazon-scraper.tprojects.workers.dev/search/laptop
 ```
-*$ Response*
+
+_$ Response_
 
 ```
 {
@@ -42,11 +44,11 @@ https://amazon-scraper.tprojects.workers.dev/search/laptop
 }
 ```
 
-*Note : All currencies are in INR (₹)*
+_Note : All currencies are in INR (₹)_
 
 #### 🗺 **Product (GET)**
 
-*$ Request*
+_$ Request_
 
 ```
 https://{yourapp}.workers.dev/product/{slug}
@@ -55,7 +57,7 @@ https://{yourapp}.workers.dev/product/{slug}
 https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM
 ```
 
-*$ Response*
+_$ Response_
 
 ```
 {
@@ -86,28 +88,32 @@ https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Pl
 }
 ```
 
-*Note : All currencies are in INR (₹)*
+_Note : All currencies are in INR (₹)_
 
 ### Deploy
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/cachecleanerjeet/amazon-scraper)
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/tuhinpal/amazon-scraper)
 
 ### Development
 
-- Install [Wrangler](https://developers.cloudflare.com/workers/cli-wrangler/install-update)
-- [Login](https://developers.cloudflare.com/workers/cli-wrangler/authentication) with your cloudflare account
-- Clone this [repository](https://github.com/cachecleanerjeet/amazon-scraper)
-- Open `wrangler.toml` and put your `account_id`
-- Run This command 
+- Install dependencies
 
-    ```
-    wrangler dev
-    ```
+  ```
+  npm i
+  ```
+
+- Run This command
+
+  ```
+  npm run dev
+  ```
 
 ### License & Copyright :
-- This Project is [Apache-2.0](https://github.com/cachecleanerjeet/amazon-scraper/blob/main/LICENSE) Licensed
-- Copyright 2021 by [Tuhin Kanti Pal](https://github.com/cachecleanerjeet)
+
+- This Project is [Apache-2.0](https://github.com/tuhinpal/amazon-scraper/blob/main/LICENSE) Licensed
+- Copyright 2021 by [Tuhin Kanti Pal](https://github.com/tuhinpal)
 
 ### Connect :
+
 - [Channel](https://telegram.dog/tprojects)
 - [Support Group](https://telegram.dog/t_projects)
