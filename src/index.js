@@ -25,7 +25,7 @@ async function handleRequest(request) {
     } else {
         return new Response('Error fetching the Amazon page.', { status: 500 });
     }
-    }else{
-        return new Response('Error server.', { status: 500 });
+    }catch(err){
+        return new Response(`Error server. ${err?.message}`, { status: 500 });
     }
 }
