@@ -3,11 +3,11 @@ addEventListener('fetch', (event) => {
 });
 
 async function handleRequest(request) {
-    const params = new URLSearchParams(request.url.search); // Get query parameters
-    const productUrlParam = params.get('url'); // Extract 'url' parameter
+    const urlParts = request.url.pathname.split('/'); // Split the URL path
+    const productUrlParam = urlParts[1]; // Extract the first part of the path
 
     if (!productUrlParam) {
-        return new Response('Missing Amazon product URL in query parameter "url".', { status: 400 });
+        return new Response('Missing Amazon product URL in the path.', { status: 400 });
     }
 
     const productUrl = decodeURIComponent(productUrlParam); // Decode URL
