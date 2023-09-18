@@ -13,6 +13,7 @@
   "devDependencies": {
     "@cloudflare/wrangler": "^1.19.12",
     "miniflare": "^2.8.1",
-    "unfurl.js": "^6.3.2"
+    "unfurl.js": "^6.3.2",
+    "cheerio": "1.0.0-rc.12"
   }
 }
