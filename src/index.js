@@ -21,8 +21,10 @@ class ImageExtractor {
 }
 
 async function handleRequest(request) {
-    const params = new URLSearchParams(request.url.search); // Get query parameters
-    const productCodeParam = params.get('code'); // Extract 'code' parameter
+    const queryParams = new URL(request.url).searchParams; // Get query parameters
+    const productCodeParam = queryParams.get('code'); // Extract 'code' parameter
+
+    console.log('Query Parameters:', queryParams.toString()); // Log the entire query string
 
     if (!productCodeParam) {
         return new Response('Missing product code in query parameter "code".', { status: 400 });
@@ -42,3 +44,4 @@ async function handleRequest(request) {
         return new Response('Error fetching the Amazon page.', { status: 500 });
     }
 }
+
