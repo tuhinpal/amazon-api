@@ -17,7 +17,7 @@ async function handleRequest(request) {
         const imageUrl = dom.querySelector('#landingImage').getAttribute('src');
 
         if (imageUrl) {
-            return new Response(`Amazon Product Image URL: ${imageUrl}`);
+            return new Response(`Amazon Product Image URL: ${imageUrl}`, { status: 200 });
         } else {
             return new Response('Image not found on the page.', { status: 404 });
         }
