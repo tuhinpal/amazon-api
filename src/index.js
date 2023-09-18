@@ -3,6 +3,7 @@ addEventListener('fetch', (event) => {
 });
 
 async function handleRequest(request) {
+    try{
     const hardcodedUrl = 'https://www.amazon.in/dp/B0C4HBW653'; // Hardcoded Amazon product URL
 
     // Send an HTTP GET request to the hardcoded Amazon product page
@@ -23,5 +24,8 @@ async function handleRequest(request) {
         }
     } else {
         return new Response('Error fetching the Amazon page.', { status: 500 });
+    }
+    }else{
+        return new Response('Error server.', { status: 500 });
     }
 }
