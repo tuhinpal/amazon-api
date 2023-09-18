@@ -3,17 +3,10 @@ addEventListener('fetch', (event) => {
 });
 
 async function handleRequest(request) {
-    const urlParts = request.url.pathname.split('/'); // Split the URL path
-    const productUrlParam = urlParts[1]; // Extract the first part of the path
+    const hardcodedUrl = 'https://www.amazon.in/dp/B0C4HBW653'; // Hardcoded Amazon product URL
 
-    if (!productUrlParam) {
-        return new Response('Missing Amazon product URL in the path.', { status: 400 });
-    }
-
-    const productUrl = decodeURIComponent(productUrlParam); // Decode URL
-
-    // Send an HTTP GET request to the Amazon product page
-    const response = await fetch(productUrl);
+    // Send an HTTP GET request to the hardcoded Amazon product page
+    const response = await fetch(hardcodedUrl);
 
     if (response.ok) {
         // Parse the HTML content
