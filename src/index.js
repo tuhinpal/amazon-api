@@ -1,70 +1,34 @@
-import search from "./search";
-import header from "./header";
-import product from "./product";
-import getMeta from "./meta";
+addEventListener('fetch', (event) => {
+    event.respondWith(handleRequest(event.request));
+});
 
 async function handleRequest(request) {
-  /* Handle the incoming request */
-  const headers = header(request.headers);
-  const path = new URL(request.url).pathname; /* Get the pathname */
+    const params = new URLSearchParams(request.url.search); // Get query parameters
+    const productUrlParam = params.get('url'); // Extract 'url' parameter
 
-  if (request.method === "GET") {
-    /* Respond for GET request method */
-    if (path.startsWith("/search/")) {
-      /* Search */
-      return new Response(
-        await search(path.replace("/search/", ""), request.headers.get("host")),
-        {
-          status: 200,
-          headers,
-        }
-      );
-    } else if (path.startsWith("/product/")) {
-      /* Product Page */
-      return new Response(await product(path.replace("/product/", "")), {
-        status: 200,
-        headers,
-      });
-    } else if (path.startsWith("/meta/")) {
-      /* Product Page */
-      return new Response(await getMeta(path.replace("/meta/", "")), {
-        status: 200,
-        headers,
-      });
-    } else {
-      return new Response(
-        JSON.stringify(
-          {
-            /* Extra curricular activities */ alive: true,
-            repository_name: "amazon-scraper",
-            repository_description:
-              "Serverless Amazon India Scraper with search and product API, made with Cloudflare worker",
-            repository_url: "https://github.com/tuhinpal/amazon-scraper",
-            made_by: "https://github.com/tuhinpal",
-            api_endpoints:
-              "https://github.com/tuhinpal/amazon-scraper#api-endpoint",
-          },
-          null,
-          2
-        ),
-        {
-          status: 200,
-          headers,
-        }
-      );
+    if (!productUrlParam) {
+        return new Response('Missing Amazon product URL in query parameter "url".', { status: 400 });
     }
-  } else if (request.method === "OPTIONS") {
-    /* Respond for OPTIONS request method */
-    return new Response("🤝", {
-      status: 200,
-      headers,
-    });
-  } else {
-    /* Respond for other request methods */
-    return Response.redirect("https://github.com/tuhinpal/amazon-scraper", 301);
-  }
-}
 
-addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request));
-});
+    const productUrl = decodeURIComponent(productUrlParam); // Decode URL
+
+    // Send an HTTP GET request to the Amazon product page
+    const response = await fetch(productUrl);
+
+    if (response.ok) {
+        // Parse the HTML content
+        const html = await response.text();
+        const dom = new DOMParser().parseFromString(html, 'text/html');
+
+        // Find the image element and extract the source URL
+        const imageUrl = dom.querySelector('#landingImage').getAttribute('src');
+
+        if (imageUrl) {
+            return new Response(`Amazon Product Image URL: ${imageUrl}`);
+        } else {
+            return new Response('Image not found on the page.', { status: 404 });
+        }
+    } else {
+        return new Response('Error fetching the Amazon page.', { status: 500 });
+    }
+}
