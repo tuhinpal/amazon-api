@@ -1,6 +1,7 @@
 import search from "./search";
 import header from "./header";
 import product from "./product";
+import getMeta from "./meta";
 
 async function handleRequest(request) {
   /* Handle the incoming request */
@@ -21,6 +22,12 @@ async function handleRequest(request) {
     } else if (path.startsWith("/product/")) {
       /* Product Page */
       return new Response(await product(path.replace("/product/", "")), {
+        status: 200,
+        headers,
+      });
+    } else if (path.startsWith("/meta/")) {
+      /* Product Page */
+      return new Response(await getMeta(path.replace("/meta/", "")), {
         status: 200,
         headers,
       });
