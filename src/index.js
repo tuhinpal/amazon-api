@@ -5,26 +5,43 @@ addEventListener('fetch', (event) => {
 const hardcodedUrl = 'https://www.amazon.in/dp/'; // Hardcoded Amazon URL
 
 class ImageExtractor {
-    async element(element) {
+    constructor() {
+        this.imageUrl = null;
+    }
+
+    element(element) {
         if (element.tagName === 'IMG') {
             const imageUrl = element.getAttribute('src');
             if (imageUrl) {
                 const productCode = imageUrl.match(/\/dp\/(\w+)/);
                 if (productCode && productCode[1]) {
-                    const code = productCode[1];
-                    const responseText = `Amazon Product Image URL: ${imageUrl}\nProduct Code: ${code}`;
-                    return new Response(responseText, { status: 200 });
+                    this.imageUrl = imageUrl;
                 }
             }
         }
+    }
+
+    toJSON() {
+        return JSON.stringify({
+            "image": this.imageUrl,
+            "code": this.extractedCode()
+        });
+    }
+
+    extractedCode() {
+        if (this.imageUrl) {
+            const productCode = this.imageUrl.match(/\/dp\/(\w+)/);
+            if (productCode && productCode[1]) {
+                return productCode[1];
+            }
+        }
+        return null;
     }
 }
 
 async function handleRequest(request) {
     const queryParams = new URL(request.url).searchParams; // Get query parameters
     const productCodeParam = queryParams.get('code'); // Extract 'code' parameter
-
-    console.log('Query Parameters:', queryParams.toString()); // Log the entire query string
 
     if (!productCodeParam) {
         return new Response('Missing product code in query parameter "code".', { status: 400 });
@@ -37,11 +54,20 @@ async function handleRequest(request) {
 
     if (response.ok) {
         // Use HTMLRewriter to parse the HTML content
-        const modifiedResponse = new HTMLRewriter().on('*', new ImageExtractor()).transform(response);
+        const imageExtractor = new ImageExtractor();
+        const transformedResponse = new HTMLRewriter().on('*', imageExtractor).transform(response);
 
-        return modifiedResponse;
+        // Check if the image extractor found an image URL
+        if (imageExtractor.extractedCode()) {
+            // Return the JSON response
+            return new Response(imageExtractor.toJSON(), {
+                headers: { "Content-Type": "application/json" },
+                status: 200
+            });
+        } else {
+            return new Response('Image not found on the page.', { status: 404 });
+        }
     } else {
         return new Response('Error fetching the Amazon page.', { status: 500 });
     }
 }
-
