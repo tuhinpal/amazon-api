@@ -2,9 +2,23 @@ addEventListener('fetch', (event) => {
     event.respondWith(handleRequest(event.request));
 });
 
-const cheerio = require('cheerio');
-
 const hardcodedUrl = 'https://www.amazon.in/dp/'; // Hardcoded Amazon URL
+
+class ImageExtractor {
+    async element(element) {
+        if (element.tagName === 'IMG') {
+            const imageUrl = element.getAttribute('src');
+            if (imageUrl) {
+                const productCode = imageUrl.match(/\/dp\/(\w+)/);
+                if (productCode && productCode[1]) {
+                    const code = productCode[1];
+                    const responseText = `Amazon Product Image URL: ${imageUrl}\nProduct Code: ${code}`;
+                    return new Response(responseText, { status: 200 });
+                }
+            }
+        }
+    }
+}
 
 async function handleRequest(request) {
     const params = new URLSearchParams(request.url.search); // Get query parameters
@@ -20,19 +34,10 @@ async function handleRequest(request) {
     const response = await fetch(productUrl);
 
     if (response.ok) {
-        // Parse the HTML content using Cheerio
-        const html = await response.text();
-        const $ = cheerio.load(html);
+        // Use HTMLRewriter to parse the HTML content
+        const modifiedResponse = new HTMLRewriter().on('*', new ImageExtractor()).transform(response);
 
-        // Find the image element and extract the source URL
-        const imageUrl = $('#landingImage').attr('src');
-
-        if (imageUrl) {
-            const responseText = `Amazon Product Image URL: ${imageUrl}\nProduct Code: ${productCodeParam}`;
-            return new Response(responseText, { status: 200 });
-        } else {
-            return new Response('Image not found on the page.', { status: 404 });
-        }
+        return modifiedResponse;
     } else {
         return new Response('Error fetching the Amazon page.', { status: 500 });
     }
