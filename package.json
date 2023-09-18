@@ -12,6 +12,7 @@
   "license": "Apache-2.0",
   "devDependencies": {
     "@cloudflare/wrangler": "^1.19.12",
-    "miniflare": "^2.8.1"
+    "miniflare": "^2.8.1",
+    "unfurl.js": "^6.3.2"
   }
 }
