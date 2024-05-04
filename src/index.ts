@@ -3,7 +3,8 @@ import routes from "@/routes";
 import { HTTPException } from "hono/http-exception";
 
 const app = new Hono();
-app.route("/api", routes);
+
+app.route("/api/:country", routes);
 
 app.onError((err, c) => {
   return c.json(

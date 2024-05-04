@@ -1,7 +1,7 @@
-import { AMAZON_BASE } from "@/config";
 import { HTTPException } from "hono/http-exception";
 
 export interface AmazonApiProps {
+  amazonBase: string;
   method: "GET" | "POST" | "PUT" | "DELETE";
   path: string;
   body?: any;
@@ -10,9 +10,9 @@ export interface AmazonApiProps {
 }
 
 export const amazonApi = async <T>(props: AmazonApiProps) => {
-  const { method, path, body, headers = {}, query } = props;
+  const { amazonBase, method, path, body, headers = {}, query } = props;
 
-  const url = new URL(path, AMAZON_BASE);
+  const url = new URL(path, amazonBase);
 
   if (query) {
     Object.keys(query).forEach((key) =>

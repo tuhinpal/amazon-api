@@ -1,9 +1,13 @@
 export const buildApiUrl = ({
   path,
   query,
+  amazonCountry,
 }: {
   path: string;
   query?: Record<string, string>;
+  amazonCountry: string;
 }) => {
-  return `/api${path}${query ? `?${new URLSearchParams(query)}` : ""}`;
+  return `/api/${amazonCountry}${path}${
+    query ? `?${new URLSearchParams(query)}` : ""
+  }`;
 };

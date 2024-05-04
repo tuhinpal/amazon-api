@@ -4,7 +4,6 @@ import { buildApiUrl } from "@/common/utils/api-url";
 import { getCurrencyFromSymbol } from "@/common/utils/currency";
 import { createImageVariants } from "@/common/utils/image";
 import { parseNumber } from "@/common/utils/number";
-import { AMAZON_BASE } from "@/config";
 import { SearchItem, SearchResult } from "@/types/Search";
 import { HTTPException } from "hono/http-exception";
 import { parseHTML } from "linkedom";
@@ -12,9 +11,13 @@ import { parseHTML } from "linkedom";
 export const search = async ({
   query,
   page = 1,
+  amazonBase,
+  amazonCountry,
 }: {
   query: string;
   page?: number;
+  amazonBase: string;
+  amazonCountry: string;
 }): Promise<SearchResult> => {
   const raw = await amazonApi<any[]>({
     method: "POST",
@@ -24,6 +27,7 @@ export const search = async ({
       page: page.toString(),
     },
     body: {},
+    amazonBase,
   });
 
   const metadataObj = raw.find((r) => r[1] === "data-search-metadata");
@@ -44,7 +48,9 @@ export const search = async ({
     .filter((r) => r[1]?.startsWith("data-main-slot:search-result"))
     .map((r: any) => r[2].html);
 
-  const parsedSearchResults = searchResultsObj.map(parseSearch);
+  const parsedSearchResults = searchResultsObj.map((r: string) =>
+    parseSearch({ raw: r, amazonBase, amazonCountry })
+  );
   const nonEmptyResults = parsedSearchResults.filter((r) => r) as SearchItem[];
 
   metadata.thisPageResults = nonEmptyResults.length;
@@ -56,6 +62,7 @@ export const search = async ({
         query: metadata.query,
         page: (page + 1).toString(),
       },
+      amazonCountry,
     }),
     prevPage:
       page === 1
@@ -66,6 +73,7 @@ export const search = async ({
               query: metadata.query,
               page: (page - 1).toString(),
             },
+            amazonCountry,
           }),
   };
 
@@ -76,7 +84,15 @@ export const search = async ({
   };
 };
 
-export const parseSearch = (raw: string): SearchItem | null => {
+export const parseSearch = ({
+  raw,
+  amazonBase,
+  amazonCountry,
+}: {
+  raw: string;
+  amazonBase: string;
+  amazonCountry: string;
+}): SearchItem | null => {
   try {
     const { document } = parseHTML(`<html><body>${raw}</body></html>`);
 
@@ -134,9 +150,10 @@ export const parseSearch = (raw: string): SearchItem | null => {
 
     return {
       id: productId,
-      productUrl: `${AMAZON_BASE}/dp/${productId}`,
+      productUrl: `${amazonBase}/dp/${productId}`,
       apiUrl: buildApiUrl({
         path: `/product/${productId}`,
+        amazonCountry,
       }),
       title,
       image: createImageVariants(imageUrl),

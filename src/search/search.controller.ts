@@ -14,10 +14,13 @@ export const search = async (c: Context) => {
   const data = await searchService.search({
     query: query,
     page: isNaN(page) ? 1 : page,
+    amazonBase: c.req.country.base,
+    amazonCountry: c.req.country.code,
   });
 
   return c.json({
     message: `Search results for ${query}`,
+    amazonCountry: c.req.country,
     ...data,
   });
 };

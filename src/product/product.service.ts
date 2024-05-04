@@ -4,15 +4,21 @@ import { HTTPException } from "hono/http-exception";
 import { getCurrencyFromSymbol } from "@/common/utils/currency";
 import { parseNumber } from "@/common/utils/number";
 import { createImageVariants } from "@/common/utils/image";
-import { AMAZON_BASE } from "@/config";
 import { parseTable } from "@/common/utils/table";
 import { InsightAspect, Product, RatingReview } from "@/types/Product";
 import parser from "any-date-parser";
 
-export const get = async ({ id }: { id: string }): Promise<Product> => {
+export const get = async ({
+  id,
+  amazonBase,
+}: {
+  id: string;
+  amazonBase: string;
+}): Promise<Product> => {
   const raw = await amazonApi<string>({
     method: "GET",
     path: `/dp/${id}`,
+    amazonBase,
   });
 
   const { document } = parseHTML(raw);
@@ -282,7 +288,7 @@ export const get = async ({ id }: { id: string }): Promise<Product> => {
     id: id,
     productDetails: {
       id: id,
-      productLink: `${AMAZON_BASE}/dp/${id}`,
+      productLink: `${amazonBase}/dp/${id}`,
       title,
       images,
       currency: getCurrencyFromSymbol(currency) as string,
