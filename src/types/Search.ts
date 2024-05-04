@@ -8,6 +8,8 @@ export interface SearchItem {
   currency: string;
   price: number;
   originalPrice: number;
+  starRating: number;
+  totalRatings: number;
   apiUrl: string;
 }
 

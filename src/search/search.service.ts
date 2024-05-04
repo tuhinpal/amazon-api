@@ -120,6 +120,18 @@ export const parseSearch = (raw: string): SearchItem | null => {
       throw new Error("Missing required fields");
     }
 
+    // Extracting the star rating
+    const starRatingElement = document.querySelector("span.a-icon-alt");
+    const starRating = starRatingElement
+      ? parseFloat(starRatingElement.textContent?.split(" ")[0] || "0")
+      : 0;
+
+    // Extracting the total ratings
+    const totalRatingsElement = document.querySelector("span.a-size-base");
+    const totalRatings = totalRatingsElement
+      ? parseInt(totalRatingsElement.textContent?.replace(",", "") || "0")
+      : 0;
+
     return {
       id: productId,
       productUrl: `${AMAZON_BASE}/dp/${productId}`,
@@ -131,6 +143,8 @@ export const parseSearch = (raw: string): SearchItem | null => {
       currency: getCurrencyFromSymbol(currency) as string,
       price: parseNumber(price),
       originalPrice: parseNumber(originalPrice || price),
+      starRating: starRating,
+      totalRatings: totalRatings,
     };
   } catch (error) {
     logger.error("Error parsing search result:", error);
