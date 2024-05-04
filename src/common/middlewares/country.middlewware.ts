@@ -18,8 +18,6 @@ export const countryMiddleware = createMiddleware(
       });
     }
 
-    console.log("Country middleware", c);
-
     c.req.country = {
       base: countryBase,
       code: country,
