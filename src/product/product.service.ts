@@ -58,8 +58,25 @@ export const get = async ({ id }: { id: string }): Promise<Product> => {
             const text = child.textContent?.trim();
             if (!text) return null;
 
-            const [key, value] = text.split("】");
-            return { key: key.replace("【", "").trim(), value: value.trim() };
+            if (text.includes("】")) {
+              const [key, value] = text.split("】");
+
+              return {
+                key: key.replace("【", "")?.trim(),
+                value: value?.trim(),
+              };
+            } else if (text.includes(":")) {
+              const [key, value] = text.split(":");
+              return {
+                key: key?.trim(),
+                value: value?.trim(),
+              };
+            } else {
+              return {
+                key: "Description",
+                value: text,
+              };
+            }
           } catch {}
         })
         .filter((s) => s) as { key: string; value: string }[])
