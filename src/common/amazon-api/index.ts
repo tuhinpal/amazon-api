@@ -47,6 +47,7 @@ const tryParseJson = (text: string) => {
   } catch {
     try {
       const splitted = text.split("\n&&&\n");
+      if (splitted.length < 3) throw new Error();
 
       return splitted
         .map((s) => {
