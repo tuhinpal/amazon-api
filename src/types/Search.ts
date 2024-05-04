@@ -2,12 +2,13 @@ import { Image } from "./Common";
 
 export interface SearchItem {
   id: string;
-  url: string;
+  productUrl: string;
   title: string;
   image: Image;
   currency: string;
   price: number;
   originalPrice: number;
+  apiUrl: string;
 }
 
 export interface SearchResult {

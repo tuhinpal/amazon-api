@@ -1,5 +1,6 @@
 import { amazonApi } from "@/common/amazon-api";
 import logger from "@/common/logger";
+import { buildApiUrl } from "@/common/utils/api-url";
 import { getCurrencyFromSymbol } from "@/common/utils/currency";
 import { createImageVariants } from "@/common/utils/image";
 import { parseNumber } from "@/common/utils/number";
@@ -49,15 +50,23 @@ export const search = async ({
   metadata.thisPageResults = nonEmptyResults.length;
 
   const pagination = {
-    nextPage: `/api/search?query=${encodeURIComponent(metadata.query)}&page=${
-      page + 1
-    }`,
+    nextPage: buildApiUrl({
+      path: "/search",
+      query: {
+        query: metadata.query,
+        page: (page + 1).toString(),
+      },
+    }),
     prevPage:
       page === 1
         ? null
-        : `/api/search?query=${encodeURIComponent(metadata.query)}&page=${
-            page - 1
-          }`,
+        : buildApiUrl({
+            path: "/search",
+            query: {
+              query: metadata.query,
+              page: (page - 1).toString(),
+            },
+          }),
   };
 
   return {
@@ -113,7 +122,10 @@ export const parseSearch = (raw: string): SearchItem | null => {
 
     return {
       id: productId,
-      url: `${AMAZON_BASE}/dp/${productId}`,
+      productUrl: `${AMAZON_BASE}/dp/${productId}`,
+      apiUrl: buildApiUrl({
+        path: `/product/${productId}`,
+      }),
       title,
       image: createImageVariants(imageUrl),
       currency: getCurrencyFromSymbol(currency) as string,
