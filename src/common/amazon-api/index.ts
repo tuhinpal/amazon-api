@@ -33,8 +33,8 @@ export const amazonApi = async <T>(props: AmazonApiProps) => {
   const result = tryParseJson(await response.text());
 
   if (!ok) {
-    throw new HTTPException(500, {
-      message: `Api Error Occured with status code ${status}`,
+    throw new HTTPException(status as any, {
+      message: `API Error Occured with status code ${status}`,
     });
   }
 
