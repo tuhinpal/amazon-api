@@ -4,3 +4,12 @@ export interface Image {
   medium: string | null;
   large: string | null;
 }
+
+export const CommonSchema = /* GraphQL */ `
+  type Image {
+    original: String
+    small: String
+    medium: String
+    large: String
+  }
+`;

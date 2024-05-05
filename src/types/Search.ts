@@ -26,3 +26,36 @@ export interface SearchResult {
   };
   results: SearchItem[];
 }
+
+export const SearchSchema = /* GraphQL */ `
+  type SearchItem {
+    id: ID
+    productUrl: String
+    title: String
+    image: Image
+    currency: String
+    price: Float
+    originalPrice: Float
+    starRating: Float
+    totalRatings: Int
+    apiUrl: String
+  }
+
+  type Metadata {
+    totalResults: Int
+    thisPageResults: Int
+    page: Int
+    query: String
+  }
+
+  type Pagination {
+    nextPage: String
+    prevPage: String
+  }
+
+  type SearchResult {
+    metadata: Metadata
+    pagination: Pagination
+    results: [SearchItem]
+  }
+`;

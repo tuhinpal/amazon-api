@@ -145,7 +145,7 @@ export const parseSearch = ({
     // Extracting the total ratings
     const totalRatingsElement = document.querySelector("span.a-size-base");
     const totalRatings = totalRatingsElement
-      ? parseInt(totalRatingsElement.textContent?.replace(",", "") || "0")
+      ? parseNumber(totalRatingsElement.textContent || "0")
       : 0;
 
     return {
@@ -161,7 +161,7 @@ export const parseSearch = ({
       price: parseNumber(price),
       originalPrice: parseNumber(originalPrice || price),
       starRating: starRating,
-      totalRatings: totalRatings,
+      totalRatings: parseInt(totalRatings.toString()),
     };
   } catch (error) {
     logger.error("Error parsing search result:", error);

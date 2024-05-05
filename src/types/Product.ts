@@ -51,3 +51,62 @@ export interface Product {
   ratingReview: RatingReview;
   otherDetails: OtherDetails;
 }
+
+export const ProductSchema = /* GraphQL */ `
+  type InsightAspect {
+    aspect: String
+    totalResponses: Int
+    positiveResponses: Int
+    negativeResponses: Int
+    gist: String
+    responses: [String]
+  }
+
+  type Insight {
+    overallResponseFromCustomer: String
+    aspects: [InsightAspect]
+  }
+
+  type Review {
+    title: String
+    content: String
+    rating: Float
+    reviewedBy: String
+    reviewDate: String
+  }
+
+  type RatingReview {
+    starRating: Float
+    totalRatings: Int
+    insights: Insight
+    reviews: [Review]
+  }
+
+  type KeyValue {
+    key: String
+    value: String
+  }
+
+  type ProductDetais {
+    id: ID
+    productLink: String
+    title: String
+    price: Float
+    currency: String
+    originalPrice: Float
+    images: [Image]
+  }
+
+  type OtherDetails {
+    features: [KeyValue]
+    technicalSpecifications: [KeyValue]
+    additionalInformations: [KeyValue]
+  }
+
+  type Product {
+    id: ID
+    productDetails: ProductDetais
+    ratingReview: RatingReview
+    otherDetails: OtherDetails
+  }
+`;

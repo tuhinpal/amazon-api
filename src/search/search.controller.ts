@@ -1,6 +1,7 @@
 import { Context } from "hono";
 import * as searchService from "@/search/search.service";
 import { HTTPException } from "hono/http-exception";
+import { parseCountry } from "@/common/utils/country";
 
 export const search = async (c: Context) => {
   const query = c.req.query("query");
@@ -22,5 +23,20 @@ export const search = async (c: Context) => {
     message: `Search results for ${query}`,
     amazonCountry: c.req.country,
     ...data,
+  });
+};
+
+export const searchGqlResolver = (args: {
+  query: string;
+  page: number;
+  country: string;
+}) => {
+  const p = parseCountry(args.country);
+
+  return searchService.search({
+    query: args.query,
+    page: isNaN(args.page) ? 1 : args.page,
+    amazonBase: p.base,
+    amazonCountry: p.code,
   });
 };
