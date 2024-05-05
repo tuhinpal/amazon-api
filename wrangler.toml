@@ -1,7 +1,2 @@
 name = "amazon-scraper"
-type = "webpack"
-account_id = ""
-workers_dev = true
-route = ""
-zone_id = ""
-compatibility_date = "2021-10-31"
+compatibility_date = "2023-12-01"

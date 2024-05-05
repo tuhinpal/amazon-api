@@ -1,0 +1,15 @@
+export const COUNTRYWISE_AMAZON_API_BASE = {
+  IN: "https://www.amazon.in",
+  US: "https://www.amazon.com",
+  UK: "https://www.amazon.co.uk",
+  CA: "https://www.amazon.ca",
+  DE: "https://www.amazon.de",
+  FR: "https://www.amazon.fr",
+  ES: "https://www.amazon.es",
+  IT: "https://www.amazon.it",
+  AU: "https://www.amazon.com.au",
+  AE: "https://www.amazon.ae",
+  SA: "https://www.amazon.sa",
+  BR: "https://www.amazon.com.br",
+  JP: "https://www.amazon.co.jp",
+};

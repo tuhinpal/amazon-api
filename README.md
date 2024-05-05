@@ -1,119 +1,89 @@
-# amazon-scraper
+# Amazon API
 
-## Serverless Amazon India Scraper made with Cloudflare worker
+This project is a comprehensive edge API for Amazon. It supports search and product endpoints. The search endpoint allows you to search for products on Amazon. The product endpoint allows you to get product details by ASIN. This API supports both `REST` and `GraphQL` endpoints.
 
-### Features
+## Changelog 🔔
 
-- Product Page
-- Search Page
-- No Limitation
-- Unlimited Requests
+<details>
+<summary><strong>1. May 5, 2024 - Don't use the hosted API</strong></summary>
 
-### Api Endpoint
+Please don't use the hosted API. Deploy your own instance of the project. The hosted API is for demonstration purposes only. The hosted API may be taken down at any time.
 
-#### 🗺 **Search (GET)**
+</details>
 
-_$ Request_
+<details>
+<summary><strong>1. May 5, 2024 - V2 is here</strong></summary>
 
-```
-https://{yourapp}.workers.dev/search/{query}
+I rewrite the full project from scratch. The new version is written in TypeScript and uses Cloudflare Workers. This version is faster and more reliable and also supports GraphQL.
 
-## Ex.
-https://amazon-scraper.tprojects.workers.dev/search/laptop
-```
+Changes:
 
-_$ Response_
+- Rewrite the full project in TypeScript
+- Used Hono
+- Add GraphQL support
+- Add support for multiple country versions of Amazon
+- Add support for pagination
 
-```
-{
-  "status": true,
-  "total_result": 16,
-  "query": "laptop",
-  "fetch_from": "https://www.amazon.in/s?k=laptop",
-  "result": [
-    {
-      "name": "ASUS VivoBook 15 (2020), 39.6 cm HD, Dual Core Intel Celeron N4020, Thin and Light Laptop (4GB RAM/256GB SSD/Integrated Graphics/Windows 10 Home/Transparent Silver/1.8 Kg), X515MA-BR002T",
-      "image": "https://m.media-amazon.com/images/I/71S8U9VzLTL._SL1000_.jpg",
-      "price": 24990,
-      "original_price": 30990,
-      "product_link": "https://www.amazon.in/ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3",
-      "query_url": "https://amazon-scraper.dvishal485.workers.dev/product/ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3"
-    },
-    ... more ...
-  ]
-}
-```
+Cheers 🎉
 
-_Note : All currencies are in INR (₹)_
+</details>
 
-#### 🗺 **Product (GET)**
+## Features 📖
 
-_$ Request_
+- Support multiple country versions of Amazon
+- Search for products on Amazon
+- Get product details by ASIN
+- Supports both REST and GraphQL endpoints
+- Supports pagination
 
-```
-https://{yourapp}.workers.dev/product/{slug}
+## Tech Stack 💻
 
-## Ex.
-https://amazon-scraper.tprojects.workers.dev/product/Lenovo-IdeaPad-15-6-inch-Platinum-81WQ003LIN/dp/B08TQQ4ZHM
-```
+- Cloudflare Workers
+- Hono
+- TypeScript
+- GraphQL
+- REST
 
-_$ Response_
+## REST API 🌐
 
-```
-{
-  "status": true,
-  "query": "ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3",
-  "fetch_from": "https://www.amazon.in/ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3",
-  "product_detail": {
-    "name": "ASUS VivoBook 15 (2020), 39.6 cm HD, Dual Core Intel Celeron N4020, Thin and Light Laptop (4GB RAM/256GB SSD/Integrated Graphics/Windows 10 Home/Transparent Silver/1.8 Kg), X515MA-BR002T",
-    "image": "https://m.media-amazon.com/images/I/71S8U9VzLTL._SL1500_.jpg",
-    "price": 24990,
-    "original_price": 30990,
-    "in_stock": false,
-    "rating_details": {
-      "ratings_count": 648,
-      "rating": 4.1
-    },
-    "features": [
-      "Free upgrade to Windows 11 when available. Disclaimer-Upgrade rollout plan is being finalized and is scheduled to begin late in 2021 and continue into 2022. Specific timing will vary by device",
-      "Processor: Intel Celeron N4020 Processor, 1.1 GHz Base Speed, Up to 2.8 GHz Max Boost Turbo Speed , 2 cores, 2 Threads, 4MB Cache",
-      "Memory & Storage: 4GB SO-DIMM DDR4 2400MHz RAM, Upgradeable up to 8GB using 1x SO-DIMM Slot with | Storage: 256GB M.2 NVMe PCIe SSD",
-      "Graphics: Integrated Intel HD Graphics",
-      "Display: 15.6-inch (39.62 cms), LED-Backlit LCD, FHD (1920 x 1080) 16:9, 220nits, NanoEdge bezel, Anti-Glare Plane with 45% NTSC, 82% Screen-To-Body Ratio",
-      "Operating System: Pre-loaded Windows 10 Home with lifetime validity",
-      "Design & battery: Up to 19.9mm Thin | NanoEdge Bezels | Thin and Light Laptop | Laptop weight: 1.8 kg | 37WHrs, 2-cell Li-ion battery | Up to 6 hours battery life ;Note: Battery life depends on conditions of usage"
-    ],
-    "product_link": "https://www.amazon.in/ASUS-VivoBook-Integrated-Transparent-X515MA-BR002T/dp/B08CKY5XX3/ref=sr_1_3"
-  }
-}
-```
+| Path                          | Method | Description                            | Try it out                                                                               |
+| :---------------------------- | :----- | :------------------------------------- | :--------------------------------------------------------------------------------------- |
+| /api/[country]/search         | `GET`  | The country code of the Amazon website | [Try it out](https://amazon-api.tprojects.workers.dev/api/in/search?query=iphone&page=1) |
+| /api/[country]/product/[asin] | `GET`  | The country code of the Amazon website | [Try it out](https://amazon-api.tprojects.workers.dev/api/in/product/B0CVL69Y27)         |
 
-_Note : All currencies are in INR (₹)_
+## GraphQL API 🌐
 
-### Deploy
+- The graphql endpoint is available at `/graphql`.
+- Try out the playground at [/graphql/playground](https://amazon-api.tprojects.workers.dev/graphql/playground).
 
-[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/tuhinpal/amazon-scraper)
+## Deployment 🚀
 
-### Development
+[![Deploy to Cloudflare Workers](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/tuhinpal/amazon-api)
 
-- Install dependencies
+## Implented country versions 🌍
 
-  ```
-  npm i
-  ```
+| Country      | Code | Base URL                                   | Implementation |
+| :----------- | :--- | :----------------------------------------- | :------------- |
+| India        | in   | [amazon.in](https://www.amazon.in)         | `Full ✅`      |
+| USA          | us   | [amazon.com](https://www.amazon.com)       | `Partial 🚧`   |
+| England      | uk   | [amazon.co.uk](https://www.amazon.co.uk)   | `Partial 🚧`   |
+| Canada       | ca   | [amazon.ca](https://www.amazon.ca)         | `Partial 🚧`   |
+| Germany      | de   | [amazon.de](https://www.amazon.de)         | `Partial 🚧`   |
+| France       | fr   | [amazon.fr](https://www.amazon.fr)         | `Partial 🚧`   |
+| Italy        | it   | [amazon.it](https://www.amazon.it)         | `Partial 🚧`   |
+| España       | es   | [amazon.es](https://www.amazon.es)         | `Partial 🚧`   |
+| Australia    | au   | [amazon.com.au](https://www.amazon.com.au) | `Partial 🚧`   |
+| Japan        | jp   | [amazon.co.jp](https://www.amazon.co.jp)   | `Partial 🚧`   |
+| Brazil       | br   | [amazon.com.br](https://www.amazon.com.br) | `Partial 🚧`   |
+| Saudi Arabia | sa   | [amazon.sa](https://www.amazon.sa)         | `Partial 🚧`   |
+| UAE          | ae   | [amazon.ae](https://www.amazon.ae)         | `Partial 🚧`   |
 
-- Run This command
+## Legal
 
-  ```
-  npm run dev
-  ```
+Accroding to some website it is not illegal to scrape public data from Amazon. I am not responsible for any misuse of this API. Use it at your own risk. This project comply with these terms:
 
-### License & Copyright :
+- Not making excessive requests to Amazon website
+- Not interfering with Amazon’s website or services
+- Not using Amazon’s trademarks or logos
 
-- This Project is [Apache-2.0](https://github.com/tuhinpal/amazon-scraper/blob/main/LICENSE) Licensed
-- Copyright 2021 by [Tuhin Kanti Pal](https://github.com/tuhinpal)
-
-### Connect :
-
-- [Channel](https://telegram.dog/tprojects)
-- [Support Group](https://telegram.dog/t_projects)
+**Are you from Amazon? and want to take down this project?** Sure, I will happy to do that. Well, see the new version of the project was written just to test, how fast I can write a production ready scraper (BTW it took 3 hours only). So my mission was accomplished. Just create an issue and I will make this project private.

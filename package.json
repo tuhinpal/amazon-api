@@ -1,17 +1,16 @@
 {
-  "private": true,
-  "name": "amazon-scraper",
-  "version": "1.0.0",
-  "description": "Serverless amazon india scraper",
-  "main": "src/index.js",
   "scripts": {
-    "dev": "miniflare --watch --debug",
-    "deploy": "wrangler publish"
+    "dev": "wrangler dev src/index.ts",
+    "deploy": "wrangler deploy --minify src/index.ts"
   },
-  "author": "Tuhin Kanti Pal <me@thetuhin.com>",
-  "license": "Apache-2.0",
+  "dependencies": {
+    "@hono/graphql-server": "^0.4.3",
+    "any-date-parser": "^1.5.4",
+    "hono": "^4.3.1",
+    "linkedom": "^0.16.11"
+  },
   "devDependencies": {
-    "@cloudflare/wrangler": "^1.19.12",
-    "miniflare": "^2.8.1"
+    "@cloudflare/workers-types": "^4.20240403.0",
+    "wrangler": "^3.47.0"
   }
 }
