@@ -78,7 +78,7 @@ Cheers 🎉
 | Saudi Arabia | sa   | [amazon.sa](https://www.amazon.sa)         | `Partial 🚧`   |
 | UAE          | ae   | [amazon.ae](https://www.amazon.ae)         | `Partial 🚧`   |
 
-## Legal
+## Legal Disclaimer ⚖️
 
 Accroding to some website it is not illegal to scrape public data from Amazon. I am not responsible for any misuse of this API. Use it at your own risk. This project comply with these terms:
 

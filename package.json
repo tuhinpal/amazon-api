@@ -12,5 +12,22 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240403.0",
     "wrangler": "^3.47.0"
-  }
+  },
+  "name": "amazon-api",
+  "description": "This project is a comprehensive edge API for Amazon. It supports search and product endpoints. The search endpoint allows you to search for products on Amazon. The product endpoint allows you to get product details by ASIN. This API supports both `REST` and `GraphQL` endpoints.",
+  "version": "2.0.0",
+  "main": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuhinpal/amazon-api.git"
+  },
+  "keywords": [
+    "amazon"
+  ],
+  "author": "Tuhin Kanti Pal <me@thetuhin.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tuhinpal/amazon-api/issues"
+  },
+  "homepage": "https://github.com/tuhinpal/amazon-api#readme"
 }
