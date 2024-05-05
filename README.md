@@ -5,14 +5,21 @@ This project is a comprehensive edge API for Amazon. It supports search and prod
 ## Changelog 🔔
 
 <details>
-<summary><strong>1. May 5, 2024 - Don't use the hosted API</strong></summary>
+<summary><strong>1. May 5, 2024 - Amazon blocked Cloudflare ASN</strong></summary>
+
+It seems like Amazon has blocked Cloudflare ASN. So, the API will work in development mode only. It uses hono, so it is possible to deploy the project on any other cloud provider.
+
+</details>
+
+<details>
+<summary><strong>2. May 5, 2024 - Don't use the hosted API</strong></summary>
 
 Please don't use the hosted API. Deploy your own instance of the project. The hosted API is for demonstration purposes only. The hosted API may be taken down at any time.
 
 </details>
 
 <details>
-<summary><strong>1. May 5, 2024 - V2 is here</strong></summary>
+<summary><strong>3. May 5, 2024 - V2 is here</strong></summary>
 
 I rewrite the full project from scratch. The new version is written in TypeScript and uses Cloudflare Workers. This version is faster and more reliable and also supports GraphQL.
 
