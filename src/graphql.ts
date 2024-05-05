@@ -1,12 +1,14 @@
 import { Hono } from "hono";
 import { graphqlServer } from "@hono/graphql-server";
 import { buildSchema } from "graphql";
-import { SearchSchema } from "./types/Search";
-import { CommonSchema } from "./types/Common";
-import { ProductSchema } from "./types/Product";
 
+import { SearchSchema } from "@/types/Search";
+import { CommonSchema } from "@/types/Common";
+import { ProductSchema } from "@/types/Product";
 import * as searchController from "@/search/search.controller";
 import * as productController from "@/product/product.controller";
+
+import playgroundHandler from "@/common/playground";
 
 const graphql = new Hono();
 
@@ -24,6 +26,7 @@ const schema = buildSchema(/* GraphQL */ `
 `);
 
 graphql.use(
+  "/",
   graphqlServer({
     schema: schema,
     rootResolver: () => {
@@ -34,5 +37,6 @@ graphql.use(
     },
   })
 );
+graphql.get("/playground", playgroundHandler);
 
 export default graphql;
