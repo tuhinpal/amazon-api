@@ -1,3 +1,7 @@
+[![Residential Proxies](https://firebasestorage.googleapis.com/v0/b/cdn-tuhin.appspot.com/o/17466092105kb?alt=media&token=025f5c1a-bdd3-4282-9a01-8392fad1a705)](https://iproyal.com/?r=860773)
+
+Looking for Premium Quality Residential Proxies at Unbeatable Prices? [Click here](https://iproyal.com/?r=860773)
+
 # Amazon API
 
 This project is a comprehensive edge API for Amazon. It supports search and product endpoints. The search endpoint allows you to search for products on Amazon. The product endpoint allows you to get product details by ASIN. This API supports both `REST` and `GraphQL` endpoints.
