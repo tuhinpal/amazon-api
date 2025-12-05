@@ -1,6 +1,6 @@
-[![Residential Proxies](https://firebasestorage.googleapis.com/v0/b/cdn-tuhin.appspot.com/o/17466092105kb?alt=media&token=025f5c1a-bdd3-4282-9a01-8392fad1a705)](https://iproyal.com/?r=860773)
+[![Proxies](https://firebasestorage.googleapis.com/v0/b/cdn-tuhin.appspot.com/o/17649221198h2s?alt=media&token=3effd955-e999-44e9-9afe-8778b0fe9d7d)](https://www.thordata.com/?ls=github&lk=amazon-api)
 
-Looking for Premium Quality Residential Proxies at Unbeatable Prices? [Click here](https://iproyal.com/?r=860773)
+Looking to Unlock Web Data at Scale? [Click here and buy the best residential proxies](https://www.thordata.com/?ls=github&lk=amazon-api)
 
 # Amazon API
 
@@ -96,5 +96,6 @@ Accroding to some website it is not illegal to scrape public data from Amazon. I
 - Not making excessive requests to Amazon website
 - Not interfering with Amazon’s website or services
 - Not using Amazon’s trademarks or logos
+- Advertisement in this repository are not tested, please use them at your own.
 
 **Are you from Amazon? and want to take down this project?** Sure, I will happy to do that. Well, see the new version of the project was written just to test, how fast I can write a production ready scraper (BTW it took 3 hours only). So my mission was accomplished. Just create an issue and I will make this project private.
